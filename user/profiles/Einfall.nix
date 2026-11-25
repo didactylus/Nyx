@@ -12,7 +12,7 @@ in
     users.users.Einfall = {
       isNormalUser = true;
       home = "/home/Einfall";
-      extraGroups = [ "libvirtd" "wheel" "input" "networkmanager" "video" "render" "podman"];
+      extraGroups = [ "i2c" "dialout" "libvirtd" "wheel" "input" "networkmanager" "video" "render" "podman"];
       shell = pkgs.zsh;
     };
 
@@ -52,7 +52,7 @@ in
       };
 
       # Dotfiles
-     home.file."zshrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/user/dotfiles/Einfall/.zshrc";
+     home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/user/dotfiles/Einfall/zshrc";
      home.file.".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${repo}/user/dotfiles/Einfall/init.lua";
      home.file.".config/waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${repo}/user/dotfiles/Einfall/config.jsonc";
      home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "${repo}/user/dotfiles/Einfall/hyprland.conf";
@@ -80,14 +80,19 @@ in
       xfce.thunar
       xfce.thunar-volman
       xfce.thunar-vcs-plugin
-
-    #MISC
-      neofetch
+    #Screenshot
+      slurp
+      grim
+      wl-clipboard
+    #Document
       obsidian
       calibre
       onlyoffice-desktopeditors
+    #Entertainment
       vencord
       freetube
+    #MISC
+      neofetch
     ];
   };
 }
