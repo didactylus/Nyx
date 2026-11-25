@@ -18,6 +18,9 @@ in
       services.resolved.enable = true;
       programs.mtr.enable = true;
 
+      environment.systemPackages = with pkgs; [
+        networkmanagerapplet
+      ];
     })
 
     (lib.mkIf cfg.bluetooth.enable {
