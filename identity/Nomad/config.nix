@@ -6,6 +6,9 @@
       ../../agg.nix
   ];
 
+  #Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   #Boot
   nyx.boot.loader = "systemdboot";
 
@@ -38,6 +41,13 @@
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
 
+ #Hardware
+ hardware.i2c.enable = true;
+ hardware.graphics = {
+   enable = true;
+   enable32Bit = true;
+ };
+ 
  #Bundles
   nyx.audio = {
     enable = true;
@@ -47,6 +57,7 @@
   nyx.core.enable = true;
   nyx.ai.ik_llama.enable = true;
   nyx.networking.enable = true;
+  nyx.networking.bluetooth.enable = true;
   nyx.media.music = {
     enable = true;
     tools.enable = true;
@@ -60,6 +71,7 @@
   nyx.bolt.enable = true;
 
  #Services
+  services.tailscale.enable = true;
 # services.pcscd.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -80,6 +92,8 @@
  #Packages
   environment.systemPackages = with pkgs; [
   steam
+  betaflight-configurator
+  chromium
 
 # ryubing
 # osu-lazer-bin
@@ -87,6 +101,9 @@
 # #Wireless
   mullvad
   mullvad-vpn
+  tailscale
+  ddcutil
+
 
 # #Utility
 # logiops
