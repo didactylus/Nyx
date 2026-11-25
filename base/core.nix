@@ -18,6 +18,14 @@ in
       nixpkgs.config.allowUnfree = true;
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 14d";
+      };
+
+      nix.optimise.automatic = true;  # dedupes identical files in the store
+
       programs = {
         neovim.enable = true;
         tmux.enable = true;
